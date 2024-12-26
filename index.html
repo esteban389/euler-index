@@ -304,21 +304,23 @@
       <p>Donde cada instante cuenta una gran historia</p>
       <script>
         const gallery = document.getElementById("gallery");
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: gallery,
-            scrub: 3,
-            start: "top bottom",
-            end: "bottom center",
-            invalidateOnRefresh: true,
-            toggleActions: "restart none none none", // Makes animation restart on each enter
-          },
-        }).fromTo(
-          gallery,
-          { rotate: "95%", scale: 0 },
-          { rotate: "0%", scale: 1 },
-          0
-        );
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: gallery,
+              scrub: 3,
+              start: "top bottom",
+              end: "bottom center",
+              invalidateOnRefresh: true,
+              toggleActions: "restart none none none", // Makes animation restart on each enter
+            },
+          })
+          .fromTo(
+            gallery,
+            { rotate: "95%", scale: 0 },
+            { rotate: "0%", scale: 1 },
+            0
+          );
       </script>
     </section>
 
