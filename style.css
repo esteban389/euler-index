@@ -307,3 +307,37 @@ body {
   }
 }
 /* Apply end styles */
+
+/** Gallery styles **/
+.gallery {
+  height: 100vh;
+  width: 95%;
+  margin-inline: auto;
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary5);
+  text-align: center;
+  color: var(--text);
+}
+.gallery div {
+  backdrop-filter: blur(10px);
+  padding: 4rem;
+  border-radius: 1rem;
+  background-color: var(--bg);
+}
+.gallery h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.gallery p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/** End gallery styles **/
