@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira Code&family=McLaren&family=Inter:wght@400;700&display=swap");
 :root {
   --text: #021803;
   --bg: #effef0;
@@ -90,10 +91,9 @@
 body {
   margin: 0;
   font-family: "Inter", ui-sans-serif;
-  min-height: 350vh;
   background-color: var(--bg);
   color: var(--text);
-  scroll-behavior: smooth;
+  scroll-behavior: none;
   overflow-x: hidden;
 }
 
@@ -108,8 +108,19 @@ body {
   align-items: center;
   z-index: 1000;
   transform: translateY(-100%); /* Hidden by default */
-  transition: transform 0.3s ease-in-out, padding 0.3s;
+  will-change: transform;
+  transition: transform 0.3s ease-in-out, padding 0.3s, background-color 0.2s;
+  backdrop-filter: blur(10px);
+}
+.navbar.solid {
+  background-color: var(--bg);
+  color: var(--text);
   box-shadow: 0 10px 30px 0 var(--text20);
+}
+.navbar:not(.solid) {
+  color: var(--accent);
+  background-color: var(--text40);
+  box-shadow: none;
 }
 .navbar.visible {
   transform: translateY(0); /* Slide into view */
@@ -148,7 +159,7 @@ body {
 .navbar ul li:hover::after {
   width: 100%;
 }
-
+/** Apply hero styles **/
 .hero {
   position: relative;
   height: 100vh;
@@ -208,17 +219,24 @@ body {
   border-color: var(--bg);
   border-width: 2px;
   border-radius: 45%;
+  will-change: transform;
   transition: opacity 0.5s ease, transform 0.3s ease;
 }
 
 #scroll-down-button svg {
   transition: transform 0.3s ease;
 }
+@media screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+}
+/** end hero styles **/
 
 /** Aply banner styles **/
 .banner {
   padding: 3rem;
-  margin: 2rem 0;
+  margin: 0;
   overflow: hidden;
 }
 
@@ -250,10 +268,19 @@ body {
 .banner-1 .btn {
   background: var(--bg);
   color: var(--text);
+  display: flex;
+  flex-direction: row;
 }
 .banner-1 .btn:hover {
   transform: translate(0, -3px) !important;
   box-shadow: 0 20px 80px -10px var(--secondary);
+}
+.banner-1 .btn svg {
+  margin-left: 0.5rem;
+  transition: transform 0.3s;
+}
+.banner-1 .btn:hover svg {
+  transform: translate(8px, 0);
 }
 .banner h2 {
   font-size: 2.5rem;

@@ -9,12 +9,22 @@
     <title>School Landing Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira Code&family=McLaren&family=Inter:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"
+    />
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+      const lenis = new Lenis();
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    </script>
   </head>
   <body>
     <nav class="navbar">
@@ -23,6 +33,7 @@
       </a>
       <ul>
         <li data-to="gallery">Galería</li>
+        <li data-to="misionVision">Misón y visión</li>
         <li data-to="news">Noticias</li>
         <li data-to="apply">Aplica</li>
         <li data-to="login">Inicia sesión</li>
@@ -35,7 +46,10 @@
           links.forEach((link) => {
             link.addEventListener("click", () => {
               const target = document.getElementById(link.dataset.to);
-              target.scrollIntoView({ behavior: "smooth" });
+              lenis.scrollTo(target, {
+                duration: 1.25,
+                offset: -navbar.clientHeight - 40,
+              });
             });
           });
         });
@@ -78,105 +92,72 @@
         </svg>
       </button>
       <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const scrollButton = document.getElementById("scroll-down-button");
-          let isVisible = false;
-
-          // GSAP fade-in animation
-          const fadeInButton = () => {
-            gsap.to(scrollButton, {
-              opacity: 1,
-              pointerEvents: "auto",
-              duration: 0.25,
-            });
-          };
-
-          // GSAP fade-out animation
-          const fadeOutButton = () => {
-            gsap.to(scrollButton, {
-              opacity: 0,
-              pointerEvents: "none",
-              duration: 0.25,
-            });
-          };
-
-          // Chevron bounce animation
-          const animateChevron = () => {
-            gsap.to("#chevron", {
-              keyframes: { y: [-10, 0, 15] },
-              repeat: -1,
-              yoyo: true,
-              duration: 0.35,
-              ease: "power1.inOut",
-            });
-          };
-
-          // Monitor scroll position
-          const handleScroll = () => {
-            const scrollThreshold = window.innerHeight * 0.4; // 70% of the viewport height
-            const buttonPosition = scrollButton.getBoundingClientRect().top;
-            const shouldBeVisible = buttonPosition >= scrollThreshold;
-
-            if (shouldBeVisible && !isVisible) {
-              fadeInButton();
-              isVisible = true;
-            } else if (!shouldBeVisible && isVisible) {
-              fadeOutButton();
-              isVisible = false;
-            }
-          };
-
-          // Initialize chevron animation
-          animateChevron();
-          fadeInButton();
-
-          // Listen for scroll events
-          window.addEventListener("scroll", handleScroll);
-
-          const firstChevron = document.getElementById("chevron");
-          const secondChevron = firstChevron.cloneNode(true);
-          secondChevron.style.position = "absolute";
-          secondChevron.style.opacity = "0";
-          secondChevron.id = "chevron-2";
-          scrollButton.appendChild(secondChevron);
-          const thirdChevron = firstChevron.cloneNode(true);
-          thirdChevron.style.position = "absolute";
-          thirdChevron.style.opacity = "0";
-          thirdChevron.id = "chevron-3";
-          scrollButton.appendChild(thirdChevron);
-
-          scrollButton.addEventListener("mouseenter", () => {
-            // Stop the bounce animation
-            gsap.killTweensOf("#scroll-down-button svg");
-
-            // Animate chevrons with stagger
-            const chevrons = [firstChevron, secondChevron, thirdChevron];
-            gsap.fromTo(
-              chevrons,
-              { opacity: 0, y: -40 },
-              {
-                opacity: 1,
-                y: (index) =>
-                  index === 0 ? -10 - index * 10 : -5 - index * 10,
-                duration: 0.02,
-                ease: "power1.out",
-                stagger: 0.075,
-              }
-            );
+        const scrollButton = document.getElementById("scroll-down-button");
+        const firstChevron = document.getElementById("chevron");
+        const secondChevron = firstChevron.cloneNode(true);
+        secondChevron.style.position = "absolute";
+        secondChevron.style.opacity = "0";
+        secondChevron.id = "chevron-2";
+        scrollButton.appendChild(secondChevron);
+        const thirdChevron = firstChevron.cloneNode(true);
+        thirdChevron.style.position = "absolute";
+        thirdChevron.style.opacity = "0";
+        thirdChevron.id = "chevron-3";
+        scrollButton.appendChild(thirdChevron);
+        // GSAP fade-in animation
+        const fadeInButton = () => {
+          gsap.to(scrollButton, {
+            opacity: 1,
+            pointerEvents: "auto",
+            duration: 0.25,
           });
+        };
 
-          scrollButton.addEventListener("mouseleave", () => {
-            // Restart the bounce animation
-            const chevrons = [firstChevron, secondChevron, thirdChevron];
-            gsap.to(chevrons, {
-              opacity: (index) => (index === 0 ? 1 : 0),
-              y: (index) => -40 - index * 10, // Move extra chevrons upward
-              duration: 0.2,
+        // Chevron bounce animation
+        const animateChevron = () => {
+          gsap.to(firstChevron, {
+            keyframes: { y: [-10, 0, 15] },
+            repeat: -1,
+            yoyo: true,
+            duration: 0.35,
+            ease: "power1.inOut",
+          });
+        };
+
+        // Initialize chevron animation
+        animateChevron();
+        fadeInButton();
+
+        scrollButton.addEventListener("mouseenter", () => {
+          // Stop the bounce animation
+          gsap.killTweensOf(firstChevron);
+
+          // Animate chevrons with stagger
+          const chevrons = [firstChevron, secondChevron, thirdChevron];
+          gsap.fromTo(
+            chevrons,
+            { opacity: 0, y: -40 },
+            {
+              opacity: 1,
+              y: (index) => (index === 0 ? -10 - index * 10 : -5 - index * 10),
+              duration: 0.02,
               ease: "power1.out",
               stagger: 0.075,
-            });
-            animateChevron();
+            }
+          );
+        });
+
+        scrollButton.addEventListener("mouseleave", () => {
+          // Restart the bounce animation
+          const chevrons = [firstChevron, secondChevron, thirdChevron];
+          gsap.to(chevrons, {
+            opacity: (index) => (index === 0 ? 1 : 0),
+            y: (index) => -40 - index * 10, // Move extra chevrons upward
+            duration: 0.2,
+            ease: "power1.out",
+            stagger: 0.075,
           });
+          animateChevron();
         });
 
         function scrollDown() {
@@ -184,44 +165,164 @@
             document.getElementById("scroll-down-button").parentElement;
           const newDiv = document.createElement("div");
           heroSection.appendChild(newDiv);
-          newDiv.scrollIntoView({ behavior: "smooth" });
+          lenis.scrollTo(newDiv, { duration: 1.25 });
           heroSection.removeChild(newDiv);
         }
       </script>
     </section>
+    <style>
+      .title {
+        font-size: max(2vw, 24px);
+        line-height: 1.1;
+        padding-bottom: 0.4em;
+        text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        font-weight: 700;
+      }
+
+      .text {
+        font-size: max(1vw, 15px);
+        line-height: 1.4;
+        overflow: hidden;
+        padding-bottom: 20px;
+        font-weight: 500;
+        color: var(--text90);
+      }
+
+      .accordions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--text);
+      }
+
+      .accordion {
+        background-color: var(--accent);
+        width: max(50vw, 280px);
+        padding: 25px 30px 10px;
+        border-radius: 15px;
+        margin-bottom: 40px;
+        box-shadow: 0 30px 30px -10px rgba(0, 0, 0, 0.3);
+
+        &:nth-child(2) {
+          background-color: var(--secondary);
+        }
+
+        &:nth-child(3) {
+          background: linear-gradient(
+            200deg,
+            rgb(101, 187, 118) 13.57%,
+            rgb(70, 111, 171) 98.38%
+          );
+        }
+
+        &:nth-child(4) {
+          background: linear-gradient(200deg, #c215d1 13.57%, #9813a1 98.38%);
+        }
+      }
+
+      .spacer {
+        height: 70vh;
+      }
+
+      @media (max-width: 480px) {
+        .accordion {
+          padding: 15px 20px 8px;
+        }
+        .title {
+          font-size: 20px;
+        }
+      }
+    </style>
+    <section id="misionVision">
+      <div class="accordions">
+        <div class="accordion">
+          <h2 class="title">Misión</h2>
+          <p class="text">
+            El Colegio Cooperativo San José de Peralta, es una institución
+            educativa que brinda una formación integral a niños y jóvenes de
+            estratos 1, 2 y 3, con el fin de formar ciudadanos competentes,
+            autónomos, críticos, solidarios y comprometidos con la construcción
+            de una sociedad más justa y equitativa.
+          </p>
+        </div>
+        <div class="accordion">
+          <h2 class="title">Visión</h2>
+          <p class="text">
+            En el 2025, el Colegio Cooperativo San José de Peralta será una
+            institución educativa reconocida por su calidad académica, su
+            compromiso con la formación integral de sus estudiantes y su
+            contribución al desarrollo de la comunidad.
+          </p>
+        </div>
+      </div>
+    </section>
+    <script>
+      const navbar = document.querySelector(".navbar");
+      const misionVision = document.getElementById("misionVision");
+      misionVision.style.marginBlock = navbar.clientHeight + 20 + "px";
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".accordions",
+          pin: true,
+          start: "top 10%",
+          scrub: 1,
+          ease: "linear",
+        },
+      });
+
+      tl.to(".accordion .text", {
+        height: 0,
+        paddingBottom: 0,
+        opacity: 0,
+        stagger: 0.25,
+      });
+      tl.to(
+        ".accordion",
+        {
+          marginBottom: -15,
+          stagger: 0.25,
+        },
+        "<"
+      );
+    </script>
+
     <section
       id="gallery"
-      style="height: 300px; width: 300px; margin-inline: auto"
+      style="
+        height: 100vh;
+        width: 95%;
+        margin-inline: auto;
+        will-change: transform;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--primary5);
+      "
     >
       <h2>Momentos que Inspiran</h2>
       <p>Donde cada instante cuenta una gran historia</p>
       <script>
-        let navbar = document.querySelector(".navbar");
-        let currentItem = document.getElementById("gallery");
-        currentItem.style.marginBlock = navbar.clientHeight + 20 + "px";
-
-        var contentTL = gsap.timeline({
+        const gallery = document.getElementById("gallery");
+        gsap.timeline({
           scrollTrigger: {
-            trigger: "#gallery",
-            scrub: 2,
+            trigger: gallery,
+            scrub: 3,
             start: "top bottom",
             end: "bottom center",
             invalidateOnRefresh: true,
             toggleActions: "restart none none none", // Makes animation restart on each enter
           },
-        });
-        contentTL.fromTo(
-          "#gallery",
-          { rotate: "35%", scale: 0, backgroundColor: "red" },
-          { rotate: "0%", scale: 1, backgroundColor: "blue" },
+        }).fromTo(
+          gallery,
+          { rotate: "95%", scale: 0 },
+          { rotate: "0%", scale: 1 },
           0
         );
-        contentTL.fromTo("#gallery h2", 1, { scale: 0 }, { scale: 1 }, 0);
-        contentTL.fromTo("#gallery p", 1, { scale: 0 }, { scale: 1 });
       </script>
     </section>
 
-    <section class="banner banner-1">
+    <section class="banner banner-1" id="apply">
       <div class="container content">
         <div>
           <h2>Únete a nuestro equipo</h2>
@@ -231,53 +332,77 @@
           </p>
         </div>
         <a href="https://app.naosoft.com.co/convocatorias" class="btn"
-          >Ver ofertas</a
-        >
+          >Ver ofertas
+          <svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M6 12H18M18 12L13 7M18 12L13 17"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+        </a>
       </div>
+      <script>
+        gsap.fromTo(
+          ".banner-1 ",
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: ".banner-1 ",
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        gsap.fromTo(
+          ".banner-1 .btn",
+          {
+            x: -200,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.75,
+            scrollTrigger: {
+              trigger: ".banner-1",
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+            onStart: () => {
+              document.querySelector(".banner-1 .btn").style.transition =
+                "none";
+            },
+            onComplete: () => {
+              document.querySelector(".banner-1 .btn").style.transition =
+                "all 0.3s ease";
+            },
+          }
+        );
+      </script>
     </section>
 
-    <script>
-      gsap.fromTo(
-        ".banner-1 ",
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: ".banner-1 ",
-            start: () => "top " + window.innerHeight * 0.75 * 1,
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".banner-1 .btn",
-        {
-          x: -200,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.75,
-          scrollTrigger: {
-            trigger: ".banner-1",
-            start: () => "top " + window.innerHeight * 0.75 * 1,
-            toggleActions: "play none none reverse",
-          },
-          onStart: () => {
-            document.querySelector(".banner-1 .btn").style.transition = "none";
-          },
-          onComplete: () => {
-            document.querySelector(".banner-1 .btn").style.transition =
-              "all 0.3s ease";
-          },
-        }
-      );
-    </script>
     <script>
       // Text animation
       gsap.from("#animated-text", {
@@ -288,105 +413,86 @@
       });
 
       // Automatic carousel
-      document.addEventListener("DOMContentLoaded", () => {
-        const slides = document.querySelectorAll(".carousel img");
-        let currentSlideIndex = 0;
-        function goToSlide(index) {
-          if (index < 0) index = slides.length - 1;
-          if (index >= slides.length) index = 0;
+      const slides = document.querySelectorAll(".carousel img");
+      let currentSlideIndex = 0;
+      function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
 
-          const currentSlide = slides[currentSlideIndex];
-          const nextSlide = slides[index];
+        const currentSlide = slides[currentSlideIndex];
+        const nextSlide = slides[index];
 
-          // Fade out current slide
-          gsap.to(currentSlide, {
-            opacity: 0,
-            duration: 1,
-            onComplete: () => currentSlide.classList.remove("active"),
-          });
-          // Fade in next slide
-          gsap.to(nextSlide, {
-            opacity: 1,
-            duration: 1,
-            onStart: () => nextSlide.classList.add("active"),
-          });
+        // Fade out current slide
+        gsap.to([currentSlide, nextSlide], {
+          opacity: (i) => (i === 0 ? 0 : 1),
+          duration: 1,
+        });
 
-          currentSlideIndex = index;
-        }
+        currentSlideIndex = index;
+      }
 
-        function nextSlide() {
-          goToSlide(currentSlideIndex + 1);
-        }
+      function nextSlide() {
+        goToSlide(currentSlideIndex + 1);
+      }
 
-        // Auto-slide every 3 seconds
-        setInterval(nextSlide, 5000);
-      });
-      window.addEventListener("scroll", () => {
-        const background = document.querySelectorAll(".carousel img");
-        for (let i = 0; i < background.length; i++) {
-          background[i].style.transform = `translateY(${
-            window.scrollY * 0.5
-          }px)`;
-        }
-      });
+      // Auto-slide every 3 seconds
+      const interval = setInterval(nextSlide, 3000);
     </script>
     <script>
       let lastScrollY = 0; // Keeps track of the last scroll position
+      const heroSection = document.querySelector(".hero");
+      const navbarCenter = navbar.clientHeight / 2;
+      const heroThreshold = heroSection.clientHeight - navbarCenter;
+      const scrollThreshold = 200;
 
       document.addEventListener("DOMContentLoaded", () => {
-        const navbar = document.querySelector(".navbar");
         // Show the navbar after scrolling down 200px
-        if (window.scrollY > 200) {
+        if (lenis.scroll > 200) {
           navbar.classList.add("visible");
         }
       });
       // Navbar visibility and size adjustment
-      window.addEventListener("scroll", () => {
-        const navbar = document.querySelector(".navbar");
-        const currentScrollY = window.scrollY;
-        const heroSection = document.querySelector(".hero");
+      const handleNavbarOnScroll = () => {
+        const currentScrollY = lenis.scroll;
 
-        console.log(navbar);
         // Show the navbar after scrolling down 200px
-        if (currentScrollY > 200) {
-          navbar.classList.add("visible");
-        } else {
-          navbar.classList.remove("visible");
-        }
+        navbar.classList.toggle("visible", currentScrollY > scrollThreshold);
 
-        const navbarCenter = navbar.clientHeight / 2;
-
-        if (currentScrollY >= heroSection.clientHeight - navbarCenter) {
-          navbar.style.backgroundColor = "var(--bg)";
-          navbar.style.color = "var(--text)";
-        } else {
-          navbar.style.color = "var(--accent)";
-          navbar.style.backgroundColor = "transparent";
-        }
+        navbar.classList.toggle("solid", currentScrollY >= heroThreshold);
 
         // Shrink or grow the navbar based on scroll direction
-        if (currentScrollY > lastScrollY) {
-          // Scrolling down
-          navbar.classList.add("shrunk");
-        } else {
-          // Scrolling up slightly
-          if (currentScrollY > 200) {
-            navbar.classList.remove("shrunk");
-          }
-        }
+        navbar.classList.toggle(
+          "shrunk",
+          currentScrollY > lastScrollY && currentScrollY > scrollThreshold
+        );
 
         lastScrollY = currentScrollY; // Update the last scroll position
-      });
+      };
     </script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         // Add scroll margin top to all the sections
         const sections = document.querySelectorAll("section");
+        const height = navbar.clientHeight + 20;
         sections.forEach((section) => {
-          section.style.scrollMarginTop = `${
-            document.querySelector(".navbar").clientHeight + 20
-          }px`;
+          section.style.scrollMarginTop = `${height}px`;
         });
+      });
+    </script>
+    <script>
+      const background = document.querySelectorAll(".carousel img");
+      gsap.to(background, {
+        y: () => window.innerHeight * 0.6,
+        ease: "none",
+        scrollTrigger: {
+          start: "top top",
+          end: "bottom bottom",
+          invalidateOnRefresh: true,
+          scrub: true,
+        },
+      });
+      lenis.on("scroll", () => {
+        handleNavbarOnScroll();
       });
     </script>
   </body>
