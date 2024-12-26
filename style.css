@@ -1,0 +1,282 @@
+:root {
+  --text: #021803;
+  --bg: #effef0;
+  --primary: #004a00;
+  --secondary: #fce116;
+  --accent: #65d86b;
+  --textcontrast: #64d97b;
+  --bgcontrast: #64d97b;
+  --primarycontrast: #64d97b;
+  --secondarycontrast: #64d97b;
+  --accentcontrast: #64d97b;
+  --text5: hsl(123, 85%, 5%, 5%);
+  --text10: hsl(123, 85%, 5%, 10%);
+  --text15: hsl(123, 85%, 5%, 15%);
+  --text20: hsl(123, 85%, 5%, 20%);
+  --text25: hsl(123, 85%, 5%, 25%);
+  --text30: hsl(123, 85%, 5%, 30%);
+  --text35: hsl(123, 85%, 5%, 35%);
+  --text40: hsl(123, 85%, 5%, 40%);
+  --text45: hsl(123, 85%, 5%, 45%);
+  --text50: hsl(123, 85%, 5%, 50%);
+  --text55: hsl(123, 85%, 5%, 55%);
+  --text60: hsl(123, 85%, 5%, 60%);
+  --text65: hsl(123, 85%, 5%, 65%);
+  --text70: hsl(123, 85%, 5%, 70%);
+  --text75: hsl(123, 85%, 5%, 75%);
+  --text80: hsl(123, 85%, 5%, 80%);
+  --text85: hsl(123, 85%, 5%, 85%);
+  --text90: hsl(123, 85%, 5%, 90%);
+  --text95: hsl(123, 85%, 5%, 95%);
+  --primary5: hsl(120, 100%, 15%, 5%);
+  --primary10: hsl(120, 100%, 15%, 10%);
+  --primary15: hsl(120, 100%, 15%, 15%);
+  --primary20: hsl(120, 100%, 15%, 20%);
+  --primary25: hsl(120, 100%, 15%, 25%);
+  --primary30: hsl(120, 100%, 15%, 30%);
+  --primary35: hsl(120, 100%, 15%, 35%);
+  --primary40: hsl(120, 100%, 15%, 40%);
+  --primary45: hsl(120, 100%, 15%, 45%);
+  --primary50: hsl(120, 100%, 15%, 50%);
+  --primary55: hsl(120, 100%, 15%, 55%);
+  --primary60: hsl(120, 100%, 15%, 60%);
+  --primary65: hsl(120, 100%, 15%, 65%);
+  --primary70: hsl(120, 100%, 15%, 70%);
+  --primary75: hsl(120, 100%, 15%, 75%);
+  --primary80: hsl(120, 100%, 15%, 80%);
+  --primary85: hsl(120, 100%, 15%, 85%);
+  --primary90: hsl(120, 100%, 15%, 90%);
+  --primary95: hsl(120, 100%, 15%, 95%);
+  --secondary5: hsl(53, 97%, 54%, 5%);
+  --secondary10: hsl(53, 97%, 54%, 10%);
+  --secondary15: hsl(53, 97%, 54%, 15%);
+  --secondary20: hsl(53, 97%, 54%, 20%);
+  --secondary25: hsl(53, 97%, 54%, 25%);
+  --secondary30: hsl(53, 97%, 54%, 30%);
+  --secondary35: hsl(53, 97%, 54%, 35%);
+  --secondary40: hsl(53, 97%, 54%, 40%);
+  --secondary45: hsl(53, 97%, 54%, 45%);
+  --secondary50: hsl(53, 97%, 54%, 50%);
+  --secondary55: hsl(53, 97%, 54%, 55%);
+  --secondary60: hsl(53, 97%, 54%, 60%);
+  --secondary65: hsl(53, 97%, 54%, 65%);
+  --secondary70: hsl(53, 97%, 54%, 70%);
+  --secondary75: hsl(53, 97%, 54%, 75%);
+  --secondary80: hsl(53, 97%, 54%, 80%);
+  --secondary85: hsl(53, 97%, 54%, 85%);
+  --secondary90: hsl(53, 97%, 54%, 90%);
+  --secondary95: hsl(53, 97%, 54%, 95%);
+  --accent5: hsl(123, 60%, 62%, 5%);
+  --accent10: hsl(123, 60%, 62%, 10%);
+  --accent15: hsl(123, 60%, 62%, 15%);
+  --accent20: hsl(123, 60%, 62%, 20%);
+  --accent25: hsl(123, 60%, 62%, 25%);
+  --accent30: hsl(123, 60%, 62%, 30%);
+  --accent35: hsl(123, 60%, 62%, 35%);
+  --accent40: hsl(123, 60%, 62%, 40%);
+  --accent45: hsl(123, 60%, 62%, 45%);
+  --accent50: hsl(123, 60%, 62%, 50%);
+  --accent55: hsl(123, 60%, 62%, 55%);
+  --accent60: hsl(123, 60%, 62%, 60%);
+  --accent65: hsl(123, 60%, 62%, 65%);
+  --accent70: hsl(123, 60%, 62%, 70%);
+  --accent75: hsl(123, 60%, 62%, 75%);
+  --accent80: hsl(123, 60%, 62%, 80%);
+  --accent85: hsl(123, 60%, 62%, 85%);
+  --accent90: hsl(123, 60%, 62%, 90%);
+  --accent95: hsl(123, 60%, 62%, 95%);
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", ui-sans-serif;
+  min-height: 350vh;
+  background-color: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transform: translateY(-100%); /* Hidden by default */
+  transition: transform 0.3s ease-in-out, padding 0.3s;
+  box-shadow: 0 10px 30px 0 var(--text20);
+}
+.navbar.visible {
+  transform: translateY(0); /* Slide into view */
+}
+.navbar.shrunk {
+  padding: 0.25rem; /* Shrink navbar */
+  padding-inline: 0.5rem;
+}
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  height: 64px;
+  width: 64;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.navbar ul li {
+  margin: 0 1rem;
+  font-size: 1rem;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.navbar ul li::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0%;
+  background-color: var(--secondary);
+  transition: width 0.2s;
+  margin-inline: auto;
+}
+.navbar ul li:hover::after {
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 11;
+}
+.hero .content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--text60);
+}
+.hero h1 {
+  font-size: 5.5rem;
+  margin: 0;
+  font-weight: 700;
+  color: var(--bgcontrast);
+}
+.hero h1 span {
+  color: var(--secondary);
+}
+
+.hero .carousel {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.hero .carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+.hero .carousel img.active {
+  z-index: 1;
+}
+
+.hero button {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  padding-inline: 0.5rem;
+  height: 60px;
+  font-size: 1rem;
+  color: var(--bg);
+  border-color: var(--bg);
+  border-width: 2px;
+  border-radius: 45%;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+}
+
+#scroll-down-button svg {
+  transition: transform 0.3s ease;
+}
+
+/** Aply banner styles **/
+.banner {
+  padding: 3rem;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Banner 1 - Modern Gradient */
+.banner-1 {
+  background: linear-gradient(135deg, var(--primary), var(--accent70));
+  color: var(--bg);
+}
+.banner-1 .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.banner-1 .btn {
+  background: var(--bg);
+  color: var(--text);
+}
+.banner-1 .btn:hover {
+  transform: translate(0, -3px) !important;
+  box-shadow: 0 20px 80px -10px var(--secondary);
+}
+.banner h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.banner p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+@media screen and (max-width: 768px) {
+  .banner .content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .banner {
+    border-radius: 7% 7% 0 0;
+  }
+  .banner-1 {
+    background: linear-gradient(180deg, var(--primary), var(--accent70));
+  }
+}
+/* Apply end styles */

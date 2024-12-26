@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/logo.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>School Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira Code&family=McLaren&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/">
+        <img src="/escudo.png" alt="Escudo de la institución" class="logo" />
+      </a>
+      <ul>
+        <li data-to="gallery">Galería</li>
+        <li data-to="news">Noticias</li>
+        <li data-to="apply">Aplica</li>
+        <li data-to="login">Inicia sesión</li>
+      </ul>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const navbar = document.querySelector(".navbar");
+          const links = navbar.querySelectorAll("li");
+
+          links.forEach((link) => {
+            link.addEventListener("click", () => {
+              const target = document.getElementById(link.dataset.to);
+              target.scrollIntoView({ behavior: "smooth" });
+            });
+          });
+        });
+      </script>
+    </nav>
+    <section id="hero" class="hero">
+      <!-- Background layer -->
+      <div class="carousel">
+        <img
+          id="carousel-bg"
+          class="active"
+          src="/imgs/niños1.jpg"
+          style="opacity: 1"
+        />
+        <img id="carousel-bg" src="/imgs/niños2.jpg" />
+        <img id="carousel-bg" src="/imgs/niños3.jpg" />
+      </div>
+      <!-- Content layer -->
+      <div class="content">
+        <h1 id="animated-text">
+          Educando en excelencia al mejor estilo <span>Calasanz</span>
+        </h1>
+      </div>
+      <button
+        id="scroll-down-button"
+        style="opacity: 0; pointer-events: none"
+        onclick="scrollDown()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          fill="currentColor"
+          id="chevron"
+        >
+          <path
+            d="M12 15.5a1 1 0 0 1-.7-.3l-7-7a1 1 0 1 1 1.4-1.4L12 13.1l6.3-6.3a1 1 0 0 1 1.4 1.4l-7 7a1 1 0 0 1-.7.3Z"
+          />
+        </svg>
+      </button>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const scrollButton = document.getElementById("scroll-down-button");
+          let isVisible = false;
+
+          // GSAP fade-in animation
+          const fadeInButton = () => {
+            gsap.to(scrollButton, {
+              opacity: 1,
+              pointerEvents: "auto",
+              duration: 0.25,
+            });
+          };
+
+          // GSAP fade-out animation
+          const fadeOutButton = () => {
+            gsap.to(scrollButton, {
+              opacity: 0,
+              pointerEvents: "none",
+              duration: 0.25,
+            });
+          };
+
+          // Chevron bounce animation
+          const animateChevron = () => {
+            gsap.to("#chevron", {
+              keyframes: { y: [-10, 0, 15] },
+              repeat: -1,
+              yoyo: true,
+              duration: 0.35,
+              ease: "power1.inOut",
+            });
+          };
+
+          // Monitor scroll position
+          const handleScroll = () => {
+            const scrollThreshold = window.innerHeight * 0.4; // 70% of the viewport height
+            const buttonPosition = scrollButton.getBoundingClientRect().top;
+            const shouldBeVisible = buttonPosition >= scrollThreshold;
+
+            if (shouldBeVisible && !isVisible) {
+              fadeInButton();
+              isVisible = true;
+            } else if (!shouldBeVisible && isVisible) {
+              fadeOutButton();
+              isVisible = false;
+            }
+          };
+
+          // Initialize chevron animation
+          animateChevron();
+          fadeInButton();
+
+          // Listen for scroll events
+          window.addEventListener("scroll", handleScroll);
+
+          const firstChevron = document.getElementById("chevron");
+          const secondChevron = firstChevron.cloneNode(true);
+          secondChevron.style.position = "absolute";
+          secondChevron.style.opacity = "0";
+          secondChevron.id = "chevron-2";
+          scrollButton.appendChild(secondChevron);
+          const thirdChevron = firstChevron.cloneNode(true);
+          thirdChevron.style.position = "absolute";
+          thirdChevron.style.opacity = "0";
+          thirdChevron.id = "chevron-3";
+          scrollButton.appendChild(thirdChevron);
+
+          scrollButton.addEventListener("mouseenter", () => {
+            // Stop the bounce animation
+            gsap.killTweensOf("#scroll-down-button svg");
+
+            // Animate chevrons with stagger
+            const chevrons = [firstChevron, secondChevron, thirdChevron];
+            gsap.fromTo(
+              chevrons,
+              { opacity: 0, y: -40 },
+              {
+                opacity: 1,
+                y: (index) =>
+                  index === 0 ? -10 - index * 10 : -5 - index * 10,
+                duration: 0.02,
+                ease: "power1.out",
+                stagger: 0.075,
+              }
+            );
+          });
+
+          scrollButton.addEventListener("mouseleave", () => {
+            // Restart the bounce animation
+            const chevrons = [firstChevron, secondChevron, thirdChevron];
+            gsap.to(chevrons, {
+              opacity: (index) => (index === 0 ? 1 : 0),
+              y: (index) => -40 - index * 10, // Move extra chevrons upward
+              duration: 0.2,
+              ease: "power1.out",
+              stagger: 0.075,
+            });
+            animateChevron();
+          });
+        });
+
+        function scrollDown() {
+          const heroSection =
+            document.getElementById("scroll-down-button").parentElement;
+          const newDiv = document.createElement("div");
+          heroSection.appendChild(newDiv);
+          newDiv.scrollIntoView({ behavior: "smooth" });
+          heroSection.removeChild(newDiv);
+        }
+      </script>
+    </section>
+    <section
+      id="gallery"
+      style="height: 300px; width: 300px; margin-inline: auto"
+    >
+      <h2>Momentos que Inspiran</h2>
+      <p>Donde cada instante cuenta una gran historia</p>
+      <script>
+        let navbar = document.querySelector(".navbar");
+        let currentItem = document.getElementById("gallery");
+        currentItem.style.marginBlock = navbar.clientHeight + 20 + "px";
+
+        var contentTL = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#gallery",
+            scrub: 2,
+            start: "top bottom",
+            end: "bottom center",
+            invalidateOnRefresh: true,
+            toggleActions: "restart none none none", // Makes animation restart on each enter
+          },
+        });
+        contentTL.fromTo(
+          "#gallery",
+          { rotate: "35%", scale: 0, backgroundColor: "red" },
+          { rotate: "0%", scale: 1, backgroundColor: "blue" },
+          0
+        );
+        contentTL.fromTo("#gallery h2", 1, { scale: 0 }, { scale: 1 }, 0);
+        contentTL.fromTo("#gallery p", 1, { scale: 0 }, { scale: 1 });
+      </script>
+    </section>
+
+    <section class="banner banner-1">
+      <div class="container content">
+        <div>
+          <h2>Únete a nuestro equipo</h2>
+          <p>
+            Haz la diferencia en la vida de los estudiantes. Estamos buscando
+            gente apasionada.
+          </p>
+        </div>
+        <a href="https://app.naosoft.com.co/convocatorias" class="btn"
+          >Ver ofertas</a
+        >
+      </div>
+    </section>
+
+    <script>
+      gsap.fromTo(
+        ".banner-1 ",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: ".banner-1 ",
+            start: () => "top " + window.innerHeight * 0.75 * 1,
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".banner-1 .btn",
+        {
+          x: -200,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.75,
+          scrollTrigger: {
+            trigger: ".banner-1",
+            start: () => "top " + window.innerHeight * 0.75 * 1,
+            toggleActions: "play none none reverse",
+          },
+          onStart: () => {
+            document.querySelector(".banner-1 .btn").style.transition = "none";
+          },
+          onComplete: () => {
+            document.querySelector(".banner-1 .btn").style.transition =
+              "all 0.3s ease";
+          },
+        }
+      );
+    </script>
+    <script>
+      // Text animation
+      gsap.from("#animated-text", {
+        opacity: 0,
+        y: -50,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+      // Automatic carousel
+      document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelectorAll(".carousel img");
+        let currentSlideIndex = 0;
+        function goToSlide(index) {
+          if (index < 0) index = slides.length - 1;
+          if (index >= slides.length) index = 0;
+
+          const currentSlide = slides[currentSlideIndex];
+          const nextSlide = slides[index];
+
+          // Fade out current slide
+          gsap.to(currentSlide, {
+            opacity: 0,
+            duration: 1,
+            onComplete: () => currentSlide.classList.remove("active"),
+          });
+          // Fade in next slide
+          gsap.to(nextSlide, {
+            opacity: 1,
+            duration: 1,
+            onStart: () => nextSlide.classList.add("active"),
+          });
+
+          currentSlideIndex = index;
+        }
+
+        function nextSlide() {
+          goToSlide(currentSlideIndex + 1);
+        }
+
+        // Auto-slide every 3 seconds
+        setInterval(nextSlide, 5000);
+      });
+      window.addEventListener("scroll", () => {
+        const background = document.querySelectorAll(".carousel img");
+        for (let i = 0; i < background.length; i++) {
+          background[i].style.transform = `translateY(${
+            window.scrollY * 0.5
+          }px)`;
+        }
+      });
+    </script>
+    <script>
+      let lastScrollY = 0; // Keeps track of the last scroll position
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const navbar = document.querySelector(".navbar");
+        // Show the navbar after scrolling down 200px
+        if (window.scrollY > 200) {
+          navbar.classList.add("visible");
+        }
+      });
+      // Navbar visibility and size adjustment
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        const currentScrollY = window.scrollY;
+        const heroSection = document.querySelector(".hero");
+
+        console.log(navbar);
+        // Show the navbar after scrolling down 200px
+        if (currentScrollY > 200) {
+          navbar.classList.add("visible");
+        } else {
+          navbar.classList.remove("visible");
+        }
+
+        const navbarCenter = navbar.clientHeight / 2;
+
+        if (currentScrollY >= heroSection.clientHeight - navbarCenter) {
+          navbar.style.backgroundColor = "var(--bg)";
+          navbar.style.color = "var(--text)";
+        } else {
+          navbar.style.color = "var(--accent)";
+          navbar.style.backgroundColor = "transparent";
+        }
+
+        // Shrink or grow the navbar based on scroll direction
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down
+          navbar.classList.add("shrunk");
+        } else {
+          // Scrolling up slightly
+          if (currentScrollY > 200) {
+            navbar.classList.remove("shrunk");
+          }
+        }
+
+        lastScrollY = currentScrollY; // Update the last scroll position
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Add scroll margin top to all the sections
+        const sections = document.querySelectorAll("section");
+        sections.forEach((section) => {
+          section.style.scrollMarginTop = `${
+            document.querySelector(".navbar").clientHeight + 20
+          }px`;
+        });
+      });
+    </script>
+  </body>
+</html>
