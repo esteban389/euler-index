@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
     <link
@@ -17,7 +18,7 @@
       href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"
     />
     <script>
-      gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(Flip, ScrollTrigger);
       const lenis = new Lenis();
       lenis.on("scroll", ScrollTrigger.update);
       gsap.ticker.add((time) => {
@@ -61,11 +62,11 @@
         <img
           id="carousel-bg"
           class="active"
-          src="/imgs/niños1.jpg"
+          src="/imgs/entrada.jpg"
           style="opacity: 1"
         />
-        <img id="carousel-bg" src="/imgs/niños2.jpg" />
-        <img id="carousel-bg" src="/imgs/niños3.jpg" />
+        <img id="carousel-bg" src="/imgs/anuncio.jpg" />
+        <img id="carousel-bg" src="/imgs/poster.jpg" />
       </div>
       <!-- Content layer -->
       <div class="content">
@@ -286,11 +287,384 @@
       );
     </script>
 
-    <section id="gallery" class="gallery" style="">
-      <div>
+    <div class="main-close">×</div>
+    <section id="gallery" class="gallery">
+      <div class="content">
         <h2>Momentos que Inspiran</h2>
         <p>Donde cada instante cuenta una gran historia</p>
       </div>
+      <div class="container" id="row1">
+        <div class="wrapper">
+          <div class="boxes">
+            <div class="box">
+              <img src="/imgs/niños1.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños2.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niñaGraduada.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños3.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños4.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños5.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/actividad1.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/actividad2.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/actividad3.jpg" alt="" class="image" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container" id="row2">
+        <div class="wrapper">
+          <div class="boxes">
+            <div class="box">
+              <img src="/imgs/actividad4.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/actividad5.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños6.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños12.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños7.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños8.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños9.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños10.jpg" alt="" class="image" />
+            </div>
+            <div class="box">
+              <img src="/imgs/niños11.jpg" alt="" class="image" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>
+        .boxes {
+          width: 200vw;
+          display: flex;
+          position: relative;
+          align-items: center;
+          overflow: hidden;
+        }
+        .gallery .container {
+          flex: 1;
+          margin: 0;
+          max-width: 100%;
+          overflow: visible;
+          position: relative;
+        }
+
+        .wrapper {
+          display: flex;
+          flex-direction: row;
+          margin-left: auto;
+          margin-right: auto;
+          width: fit-content;
+          height: 100%;
+        }
+
+        .box {
+          position: absolute;
+          will-change: transform;
+          padding: 0.5rem;
+          cursor: pointer;
+          transition: opacity 0.3s ease;
+        }
+
+        .box .image {
+          width: calc(26vw - 1rem);
+          height: auto;
+          aspect-ratio: 4/3;
+          object-fit: cover;
+          border: 16px;
+          transition: transform 0.3s ease, all 0.3s ease;
+        }
+
+        .box.zoomed {
+          position: fixed;
+          top: 0;
+          left: 0;
+          padding: 0;
+          z-index: 1000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(0, 0, 0, 0.9);
+        }
+
+        .box.zoomed .image {
+          max-width: 95vw;
+          max-height: 95vh;
+          border-radius: 0;
+        }
+
+        .main-close {
+          position: fixed;
+          top: 0px;
+          left: 0px;
+          width: 60px;
+          height: 60px;
+          color: white;
+          font-size: 40px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1001;
+          opacity: 0;
+          pointer-events: none;
+          background: rgba(0, 0, 0, 0.5);
+          border-radius: 50%;
+        }
+
+        .main-close.active {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        /* Dim other images when one is hovered */
+        .container:hover .box {
+          opacity: 0.3;
+        }
+
+        .container .box:hover {
+          opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+          .box .image {
+            width: calc(50vw - 1rem);
+          }
+        }
+
+        @media screen and (max-width: 480px) {
+          .box .image {
+            width: calc(80vw - 1rem);
+          }
+        }
+      </style>
+      <script>
+        let currentImg = null;
+let isZooming = false;
+let currentImgProps = { x: 0, y: 0, width: 0, height: 0 };
+
+function initializeGallery() {
+  const boxes = document.querySelectorAll(".box");
+  const closeButton = document.querySelector(".main-close");
+  let mouse = { x: 0, y: 0 };
+
+  boxes.forEach((box) => {
+    box.addEventListener("click", (e) => {
+      if (isZooming) return;
+
+      isZooming = true;
+      gsap.delayedCall(0.8, () => (isZooming = false));
+
+      if (currentImg) {
+        // Enhanced zoom out animation
+        gsap
+          .timeline({ defaults: { ease: "expo.out" }}) // Changed to expo.out for smoother exit
+          .to(closeButton, {
+            duration: 0.3, // Increased duration
+            opacity: 0,
+            pointerEvents: "none",
+          })
+          .to(
+            currentImg,
+            {
+              duration: 0.5,
+              x: currentImgProps.x,
+              y: currentImgProps.y,
+              width: currentImgProps.width,
+              height: currentImgProps.height,
+              scale: 1,
+              borderRadius: "8px",
+              ease: "power2.inOut", // Added specific easing for smoother transition
+              onComplete: () => {
+                currentImg.classList.remove("zoomed");
+                resumeAllRowAnimations();
+                currentImg = null;
+              },
+            },
+            0
+          );
+      } else {
+        // Enhanced zoom in animation
+        currentImg = box;
+        const rect = box.getBoundingClientRect();
+
+        currentImgProps = {
+          x: gsap.getProperty(box, "x"),
+          y: gsap.getProperty(box, "y"),
+          width: rect.width,
+          height: rect.height,
+        };
+
+        const rowId = box.closest(".container").id;
+        pauseRowAnimation(rowId);
+
+        box.classList.add("zoomed");
+
+        gsap
+          .timeline({ defaults: { duration: 0.6, ease: "expo.inOut" } })
+          .to(closeButton, {
+            opacity: 1,
+            pointerEvents: "all",
+            duration: 0.4,
+          })
+          .to(
+            box,
+            {
+              x: 0,
+              y: 0,
+              scale: 1,
+              width: "100vw",
+              height: "100vh",
+              ease: "power2.inOut",
+            },
+            0
+          );
+      }
+    });
+  });
+
+  closeButton.addEventListener("click", () => {
+    if (currentImg) {
+      const event = new Event("click");
+      currentImg.dispatchEvent(event);
+    }
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    gsap.to(closeButton, {
+      x: mouse.x - closeButton.clientWidth / 2,
+      y: mouse.y - closeButton.clientHeight / 2,
+      duration: 0.2, // Slightly increased for smoother cursor following
+    });
+  });
+}
+
+function animateRow(id, direction = -1) {
+  const boxes = document.getElementById(id).querySelectorAll(".box");
+
+  function getBoxWidth() {
+    if (window.innerWidth <= 480) return 0.8 * window.innerWidth;
+    if (window.innerWidth <= 768) return 0.5 * window.innerWidth;
+    return 0.26 * window.innerWidth;
+  }
+
+  const boxWidth = getBoxWidth();
+  const wrapWidth = (boxes.length - 1) * boxWidth;
+  
+  // Initial positioning
+  gsap.set(boxes, {
+    x: (i) => i * boxWidth,
+  });
+
+  const images = gsap.utils.toArray(`#${id} .box`);
+  const velocityFactor = id === "row2" ? 0.8 : 1; // Slow down row2 slightly
+  const additionalX = { val: 0 };
+  let additionalXAnim;
+  let offset = 0;
+
+  window[`${id}Animations`] = [];
+
+  images.forEach((item) => {
+    const anim = gsap.to(item, {
+      x: (i, target) => {
+        const x = gsap.getProperty(target, "x") + wrapWidth * direction - boxWidth;
+        return x;
+      },
+      duration: id === "row2" ? 14 : 12, // Slower animation for row2
+      repeat: -1,
+      ease: "none",
+      modifiers: {
+        x: gsap.utils.unitize((x) => {
+          offset += additionalX.val;
+          x = parseFloat(x) + offset;
+          x = wrap(parseFloat(x), -boxWidth, wrapWidth);
+          return x;
+        }),
+      },
+    });
+    window[`${id}Animations`].push(anim);
+  });
+
+  window[`${id}ScrollTrigger`] = ScrollTrigger.create({
+    trigger: `#${id} .boxes`,
+    start: "top bottom",
+    end: "bottom top",
+    onUpdate: function (self) {
+      const velocity = self.getVelocity();
+      if (Math.abs(velocity) > 0) {
+        if (additionalXAnim) additionalXAnim.kill();
+        additionalX.val = ((velocity / 500) * direction * velocityFactor);
+        additionalXAnim = gsap.to(additionalX, { 
+          val: 0,
+          duration: 0.5,
+          ease: "power2.out"
+        });
+      }
+    },
+  });
+}
+
+// Helper functions remain the same
+function pauseRowAnimation(rowId) {
+  if (window[`${rowId}Animations`]) {
+    window[`${rowId}Animations`].forEach((anim) => anim.pause());
+  }
+}
+
+function resumeRowAnimation(rowId) {
+  if (window[`${rowId}Animations`]) {
+    window[`${rowId}Animations`].forEach((anim) => anim.resume());
+  }
+}
+
+function resumeAllRowAnimations() {
+  resumeRowAnimation("row1");
+  resumeRowAnimation("row2");
+}
+
+function wrap(value, min, max) {
+  var v = value - min;
+  var r = max - min;
+  return ((r + (v % r)) % r) + min;
+}
+
+// Initialize everything
+document.addEventListener("DOMContentLoaded", () => {
+  animateRow("row1", -1);
+  animateRow("row2", 1);
+  initializeGallery();
+});
+      </script>
+
       <script>
         const gallery = document.getElementById("gallery");
         gsap
@@ -298,7 +672,7 @@
             scrollTrigger: {
               trigger: gallery,
               scrub: 3,
-              start: () => "top " + window.innerHeight * 3.5,
+              start: () => "top " + window.innerHeight * 5.5,
               end: "bottom center",
               invalidateOnRefresh: true,
               toggleActions: "restart none none none", // Makes animation restart on each enter
@@ -306,7 +680,7 @@
           })
           .fromTo(
             gallery,
-            { rotate: "95%", scale: 0 },
+            { rotate: "135%", scale: 0 },
             { rotate: "0%", scale: 1 },
             0
           );
