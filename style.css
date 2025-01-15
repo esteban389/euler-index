@@ -98,68 +98,6 @@ body {
   overflow-x: hidden;
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-  transform: translateY(-100%); /* Hidden by default */
-  will-change: transform;
-  transition: transform 0.3s ease-in-out, padding 0.3s, background-color 0.2s;
-  backdrop-filter: blur(10px);
-}
-.navbar.solid {
-  background-color: var(--bg);
-  color: var(--text);
-  box-shadow: 0 10px 30px 0 var(--text20);
-}
-.navbar:not(.solid) {
-  color: var(--accent);
-  background-color: var(--text40);
-  box-shadow: none;
-}
-.navbar.visible {
-  transform: translateY(0); /* Slide into view */
-}
-.navbar.shrunk {
-  padding: 0.25rem; /* Shrink navbar */
-  padding-inline: 0.5rem;
-}
-.navbar .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  height: 64px;
-  width: 64;
-}
-.navbar ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-.navbar ul li {
-  margin: 0 1rem;
-  font-size: 1rem;
-  transition: color 0.2s;
-  cursor: pointer;
-}
-.navbar ul li::after {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 0%;
-  background-color: var(--secondary);
-  transition: width 0.2s;
-  margin-inline: auto;
-}
-.navbar ul li:hover::after {
-  width: 100%;
-}
 /** Apply hero styles **/
 .hero {
   position: relative;

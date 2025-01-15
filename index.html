@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/logo.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
     <title>School Landing Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,6 +12,294 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fira Code&family=McLaren&family=Inter:wght@400;700&display=swap");
+      :root {
+        --text: #021803;
+        --bg: hsl(124, 88%, 97%);
+        --bgOp: hsla(124, 88%, 97%, 0.5);
+        --primary: #004d00;
+        --secondary: #fce116;
+        --accent: #65d86b;
+        --textcontrast: #64d97b;
+        --bgcontrast: #64d97b;
+        --primarycontrast: #64d97b;
+        --secondarycontrast: #64d97b;
+        --accentcontrast: #64d97b;
+        --text5: hsl(123, 85%, 5%, 5%);
+        --text10: hsl(123, 85%, 5%, 10%);
+        --text15: hsl(123, 85%, 5%, 15%);
+        --text20: hsl(123, 85%, 5%, 20%);
+        --text25: hsl(123, 85%, 5%, 25%);
+        --text30: hsl(123, 85%, 5%, 30%);
+        --text35: hsl(123, 85%, 5%, 35%);
+        --text40: hsl(123, 85%, 5%, 40%);
+        --text45: hsl(123, 85%, 5%, 45%);
+        --text50: hsl(123, 85%, 5%, 50%);
+        --text55: hsl(123, 85%, 5%, 55%);
+        --text60: hsl(123, 85%, 5%, 60%);
+        --text65: hsl(123, 85%, 5%, 65%);
+        --text70: hsl(123, 85%, 5%, 70%);
+        --text75: hsl(123, 85%, 5%, 75%);
+        --text80: hsl(123, 85%, 5%, 80%);
+        --text85: hsl(123, 85%, 5%, 85%);
+        --text90: hsl(123, 85%, 5%, 90%);
+        --text95: hsl(123, 85%, 5%, 95%);
+        --primary5: hsl(120, 100%, 15%, 5%);
+        --primary10: hsl(120, 100%, 15%, 10%);
+        --primary15: hsl(120, 100%, 15%, 15%);
+        --primary20: hsl(120, 100%, 15%, 20%);
+        --primary25: hsl(120, 100%, 15%, 25%);
+        --primary30: hsl(120, 100%, 15%, 30%);
+        --primary35: hsl(120, 100%, 15%, 35%);
+        --primary40: hsl(120, 100%, 15%, 40%);
+        --primary45: hsl(120, 100%, 15%, 45%);
+        --primary50: hsl(120, 100%, 15%, 50%);
+        --primary55: hsl(120, 100%, 15%, 55%);
+        --primary60: hsl(120, 100%, 15%, 60%);
+        --primary65: hsl(120, 100%, 15%, 65%);
+        --primary70: hsl(120, 100%, 15%, 70%);
+        --primary75: hsl(120, 100%, 15%, 75%);
+        --primary80: hsl(120, 100%, 15%, 80%);
+        --primary85: hsl(120, 100%, 15%, 85%);
+        --primary90: hsl(120, 100%, 15%, 90%);
+        --primary95: hsl(120, 100%, 15%, 95%);
+        --secondary5: hsl(53, 97%, 54%, 5%);
+        --secondary10: hsl(53, 97%, 54%, 10%);
+        --secondary15: hsl(53, 97%, 54%, 15%);
+        --secondary20: hsl(53, 97%, 54%, 20%);
+        --secondary25: hsl(53, 97%, 54%, 25%);
+        --secondary30: hsl(53, 97%, 54%, 30%);
+        --secondary35: hsl(53, 97%, 54%, 35%);
+        --secondary40: hsl(53, 97%, 54%, 40%);
+        --secondary45: hsl(53, 97%, 54%, 45%);
+        --secondary50: hsl(53, 97%, 54%, 50%);
+        --secondary55: hsl(53, 97%, 54%, 55%);
+        --secondary60: hsl(53, 97%, 54%, 60%);
+        --secondary65: hsl(53, 97%, 54%, 65%);
+        --secondary70: hsl(53, 97%, 54%, 70%);
+        --secondary75: hsl(53, 97%, 54%, 75%);
+        --secondary80: hsl(53, 97%, 54%, 80%);
+        --secondary85: hsl(53, 97%, 54%, 85%);
+        --secondary90: hsl(53, 97%, 54%, 90%);
+        --secondary95: hsl(53, 97%, 54%, 95%);
+        --accent5: hsl(123, 60%, 62%, 5%);
+        --accent10: hsl(123, 60%, 62%, 10%);
+        --accent15: hsl(123, 60%, 62%, 15%);
+        --accent20: hsl(123, 60%, 62%, 20%);
+        --accent25: hsl(123, 60%, 62%, 25%);
+        --accent30: hsl(123, 60%, 62%, 30%);
+        --accent35: hsl(123, 60%, 62%, 35%);
+        --accent40: hsl(123, 60%, 62%, 40%);
+        --accent45: hsl(123, 60%, 62%, 45%);
+        --accent50: hsl(123, 60%, 62%, 50%);
+        --accent55: hsl(123, 60%, 62%, 55%);
+        --accent60: hsl(123, 60%, 62%, 60%);
+        --accent65: hsl(123, 60%, 62%, 65%);
+        --accent70: hsl(123, 60%, 62%, 70%);
+        --accent75: hsl(123, 60%, 62%, 75%);
+        --accent80: hsl(123, 60%, 62%, 80%);
+        --accent85: hsl(123, 60%, 62%, 85%);
+        --accent90: hsl(123, 60%, 62%, 90%);
+        --accent95: hsl(123, 60%, 62%, 95%);
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", ui-sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        scroll-behavior: none;
+        overflow-x: hidden;
+      }
+
+      /** Apply hero styles **/
+      .hero {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        z-index: 11;
+      }
+      .hero .content {
+        position: relative;
+        z-index: 2;
+        color: white;
+        text-align: center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: var(--text60);
+      }
+      .hero h1 {
+        font-size: 5.5rem;
+        margin: 0;
+        font-weight: 700;
+        color: var(--bgcontrast);
+      }
+
+      .hero .carousel {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .hero .carousel img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+      }
+      .hero .carousel img.active {
+        z-index: 1;
+      }
+
+      .hero button {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        padding-inline: 0.5rem;
+        height: 60px;
+        font-size: 1rem;
+        color: var(--bg);
+        border-color: var(--bg);
+        border-width: 2px;
+        border-radius: 45%;
+        will-change: transform;
+        transition: opacity 0.5s ease, transform 0.3s ease;
+      }
+
+      #scroll-down-button svg {
+        transition: transform 0.3s ease;
+      }
+      @media screen and (max-width: 768px) {
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+      }
+      /** end hero styles **/
+
+      /** Aply banner styles **/
+      .banner {
+        padding: 3rem;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.875rem 1.75rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Banner 1 - Modern Gradient */
+      .banner-1 {
+        background: linear-gradient(135deg, var(--primary), var(--accent70));
+        color: var(--bg);
+      }
+      .banner-1 .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .banner-1 .btn {
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        flex-direction: row;
+      }
+      .banner-1 .btn:hover {
+        transform: translate(0, -3px) !important;
+        box-shadow: 0 20px 80px -10px var(--secondary);
+      }
+      .banner-1 .btn svg {
+        margin-left: 0.5rem;
+        transition: transform 0.3s;
+      }
+      .banner-1 .btn:hover svg {
+        transform: translate(8px, 0);
+      }
+      .banner h2 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .banner p {
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+        font-weight: 500;
+      }
+      @media screen and (max-width: 768px) {
+        .banner .content {
+          flex-direction: column;
+          text-align: center;
+          gap: 2rem;
+        }
+        .banner {
+          border-radius: 7% 7% 0 0;
+        }
+        .banner-1 {
+          background: linear-gradient(180deg, var(--primary), var(--accent70));
+        }
+      }
+      /* Apply end styles */
+
+      /** Gallery styles **/
+      .gallery {
+        height: 100vh;
+        width: 95%;
+        margin-inline: auto;
+        will-change: transform;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--primary5);
+        color: var(--text);
+        overflow: hidden;
+        position: relative;
+        gap: 10px;
+      }
+      .gallery .content {
+        backdrop-filter: blur(10px);
+        padding: 4rem;
+        border-radius: 1rem;
+        background-color: var(--bgOp);
+        position: absolute;
+        z-index: 10000;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .gallery h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .gallery p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      /** End gallery styles **/
+    </style>
     <link
       rel="stylesheet"
       href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"
@@ -28,34 +315,418 @@
     </script>
   </head>
   <body>
-    <nav class="navbar">
-      <a href="/">
-        <img src="/escudo.png" alt="Escudo de la institución" class="logo" />
-      </a>
-      <ul>
-        <li data-to="gallery">Galería</li>
-        <li data-to="misionVision">Misón y visión</li>
-        <li data-to="news">Noticias</li>
-        <li data-to="apply">Aplica</li>
-        <li data-to="login">Inicia sesión</li>
-      </ul>
-      <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const navbar = document.querySelector(".navbar");
-          const links = navbar.querySelectorAll("li");
+    <style>
+      .menu-container {
+        position: fixed;
+        top: 2%;
+        left: 0%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 1000;
+        transform: translateY(0);
+      }
 
-          links.forEach((link) => {
-            link.addEventListener("click", () => {
-              const target = document.getElementById(link.dataset.to);
-              lenis.scrollTo(target, {
-                duration: 1.25,
-                offset: -navbar.clientHeight - 40,
-              });
-            });
+      .menu {
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 50px;
+        padding: 8px;
+        width: 84px;
+        height: 84px;
+        cursor: pointer;
+        box-shadow: 0 4px 48px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        position: relative;
+        transform-origin: center top;
+        will-change: width, height, border-radius;
+        transition: background 0.3s ease;
+      }
+      .menu:has(.menu-item:hover) {
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .menu-image {
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        transition: border-radius 0.3s ease;
+      }
+
+      .menu-items {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-left: 16px;
+        padding-right: 32px;
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        left: 100px;
+        pointer-events: none;
+      }
+
+      .menu-item {
+        color: #e0dede;
+        text-decoration: none;
+        font-weight: 700;
+        white-space: nowrap;
+        list-style-type: none;
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+
+      /* Mobile styles */
+      @media screen and (max-width: 768px) {
+        .menu {
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.7);
+          transition: all 0.3s ease;
+        }
+
+        .menu.expanded {
+          width: 90vw !important;
+          height: 80vh !important;
+          border-radius: 25px;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 8px;
+        }
+
+        .menu-image {
+          margin-inline: auto;
+        }
+
+        .menu.expanded .menu-image {
+          border-radius: 15px;
+        }
+
+        .menu.expanded .menu-items {
+          position: relative;
+          left: 0;
+          margin: 16px 0 8px 0;
+          padding: 0 16px;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+        }
+
+        .menu-item {
+          padding: 12px 0;
+          width: 100%;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        .menu-item:last-child {
+          border-bottom: none;
+        }
+      }
+      .menu-item {
+        color: #e0dede;
+        text-decoration: none;
+        font-weight: 700;
+        white-space: nowrap;
+        list-style-type: none;
+        transform: translateY(-10px);
+        opacity: 0;
+        position: relative;
+        padding: 4px 8px;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      /* Hover effect with underline animation */
+      .menu-item::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0%;
+        margin-inline: auto;
+        background-color: #fff;
+        transition: width 0.3s ease;
+      }
+
+      .menu-item:hover {
+        color: #fff;
+        animation: bounce-menu-item 0.8s ease;
+      }
+
+      .menu-item:hover::after {
+        width: 100%;
+      }
+
+      /* Mobile-specific styles */
+      @media screen and (max-width: 768px) {
+        .menu-item {
+          padding: 12px 16px;
+          width: 100%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Lighter border */
+          transform: translateY(0);
+          opacity: 1;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+          transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          transform: translateX(8px);
+        }
+
+        .menu-item:active {
+          transform: scale(0.98);
+        }
+
+        .menu-item::after {
+          display: none; /* Remove underline effect on mobile */
+        }
+
+        .menu-item:last-child {
+          border-bottom: none;
+        }
+      }
+    </style>
+
+    <div class="menu-container">
+      <div class="menu">
+        <img class="menu-image" src="/escudo.png" alt="Menu" />
+        <div class="menu-items">
+          <li data-to="gallery" class="menu-item">Galería</li>
+          <li data-to="misionVision" class="menu-item">Misón y visión</li>
+          <li data-to="news" class="menu-item">Noticias</li>
+          <li data-to="apply" class="menu-item">Aplica</li>
+          <li data-to="login" class="menu-item">Inicia sesión</li>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const menu = document.querySelector(".menu");
+      const menuContainer = document.querySelector(".menu-container");
+      const menuItems = document.querySelector(".menu-items");
+      const menuImage = document.querySelector(".menu-image");
+      const menuItemsList = document.querySelectorAll(".menu-item");
+      let isExpanded = false;
+      let animation = null;
+      let lastScrollTop = 0;
+      let scrollTimeout;
+      let lastMenuScrollY = 0;
+      let menuScrollThreshold = 200;
+      const isMobile = window.innerWidth <= 768;
+
+      function expandMenu() {
+        if (animation) animation.kill();
+
+        menuItems.style.visibility = "visible";
+        menuItems.style.pointerEvents = "auto";
+        menu.classList.add("expanded");
+
+        if (isMobile) {
+          // Enhanced mobile animation
+          animation = gsap
+            .timeline()
+            .to(menu, {
+              width: "90vw",
+              height: "auto",
+              duration: 0.4,
+              ease: "power2.out",
+            })
+            .to(
+              menuImage,
+              {
+                borderRadius: "15px",
+                duration: 0.3,
+              },
+              "-=0.4"
+            )
+            .to(
+              menuItems,
+              {
+                opacity: 1,
+                duration: 0.3,
+              },
+              "-=0.2"
+            )
+            .to(
+              menuItemsList,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+                stagger: 0.05,
+                ease: "power2.out",
+              },
+              "-=0.2"
+            );
+        } else {
+          // Desktop animation (unchanged)
+          const totalWidth = menuItems.scrollWidth + 84 + 24;
+          animation = gsap
+            .timeline()
+            .to(menu, {
+              width: totalWidth,
+              duration: 0.5,
+              ease: "elastic.out(1, 0.5)",
+            })
+            .to(
+              menuItems,
+              {
+                opacity: 1,
+                duration: 0.125,
+                ease: "back.out(1)",
+              },
+              "-=0.2"
+            )
+            .to(
+              menuItemsList,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.1,
+                stagger: 0.05,
+                ease: "power2.out",
+              },
+              "-=0.2"
+            );
+
+          gsap.to(menu, {
+            scale: 1.02,
+            duration: 0.3,
+            ease: "back.out(2)",
+            yoyo: true,
+            repeat: 1,
           });
+        }
+
+        isExpanded = true;
+      }
+
+      function collapseMenu() {
+        if (animation) animation.kill();
+
+        animation = gsap
+          .timeline()
+          .to(menuItemsList, {
+            opacity: 0,
+            y: -10,
+            duration: 0.2,
+            stagger: 0.03,
+            ease: "power2.in",
+          })
+          .to(
+            menuItems,
+            {
+              opacity: 0,
+              duration: 0.2,
+              ease: "power2.in",
+              onComplete: () => {
+                if (isMobile) return;
+                menuItems.style.visibility = "hidden";
+                menuItems.style.pointerEvents = "none";
+              },
+            },
+            "-=0.1"
+          )
+          .to(
+            menu,
+            {
+              width: 84,
+              height: 84,
+              duration: 0.3,
+              ease: "power2.inOut",
+              onComplete: () => {
+                menu.classList.remove("expanded");
+              },
+            },
+            "-=0.1"
+          )
+          .to(
+            menuImage,
+            {
+              borderRadius: "50%",
+              duration: 0.3,
+            },
+            "-=0.3"
+          );
+
+        isExpanded = false;
+      }
+
+      function handleMenuScroll(e) {
+        const currentScroll = lenis.scroll;
+        if (
+          currentScroll > lastMenuScrollY &&
+          currentScroll > menuScrollThreshold
+        ) {
+          gsap.to(menuContainer, {
+            yPercent: -150,
+            scale: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          });
+          if (isExpanded) collapseMenu();
+        } else {
+          gsap.to(menuContainer, {
+            yPercent: 0,
+            scale: 1,
+            duration: 0.4,
+            ease: "power2.out",
+          });
+        }
+
+        lastMenuScrollY = currentScroll;
+      }
+
+      // Event listeners
+      lenis.on("scroll", handleMenuScroll);
+
+      if (!isMobile) {
+        menu.addEventListener("mouseenter", expandMenu);
+        menu.addEventListener("mouseleave", collapseMenu);
+      }
+
+      menu.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        if (!isExpanded) {
+          expandMenu();
+        } else {
+          // Check if the target is not a menu item
+          if (!e.target.classList.contains("menu-item")) {
+            collapseMenu();
+          }
+        }
+      });
+
+      const links = menuItems.querySelectorAll("li");
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          console.log("Clicked", link.dataset.to);
+          const target = document.getElementById(link.dataset.to);
+          lenis.scrollTo(target, {
+            duration: 1.25,
+          });
+          if (isMobile) {
+            collapseMenu();
+          }
         });
-      </script>
-    </nav>
+      });
+
+      // Handle resize
+      window.addEventListener("resize", () => {
+        const newIsMobile = window.innerWidth <= 768;
+        if (newIsMobile !== isMobile) {
+          location.reload();
+        }
+      });
+    </script>
     <section id="hero" class="hero">
       <!-- Background layer -->
       <div class="carousel">
@@ -96,6 +767,7 @@
         const scrollButton = document.getElementById("scroll-down-button");
         const firstChevron = document.getElementById("chevron");
         const secondChevron = firstChevron.cloneNode(true);
+        let firstChevronAnimation = null;
         secondChevron.style.position = "absolute";
         secondChevron.style.opacity = "0";
         secondChevron.id = "chevron-2";
@@ -116,7 +788,7 @@
 
         // Chevron bounce animation
         const animateChevron = () => {
-          gsap.to(firstChevron, {
+          firstChevronAnimation = gsap.to(firstChevron, {
             keyframes: { y: [-10, 0, 15] },
             repeat: -1,
             yoyo: true,
@@ -131,7 +803,7 @@
 
         scrollButton.addEventListener("mouseenter", () => {
           // Stop the bounce animation
-          gsap.killTweensOf(firstChevron);
+          if (firstChevronAnimation) firstChevronAnimation.kill();
 
           // Animate chevrons with stagger
           const chevrons = [firstChevron, secondChevron, thirdChevron];
@@ -194,6 +866,7 @@
         flex-direction: column;
         align-items: center;
         color: var(--text);
+        margin-top: 80px;
       }
 
       .accordion {
@@ -258,9 +931,7 @@
       </div>
     </section>
     <script>
-      const navbar = document.querySelector(".navbar");
       const misionVision = document.getElementById("misionVision");
-      misionVision.style.marginBlock = navbar.clientHeight + 20 + "px";
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".accordions",
@@ -287,7 +958,6 @@
       );
     </script>
 
-    <div class="main-close">×</div>
     <section id="gallery" class="gallery">
       <div class="content">
         <h2>Momentos que Inspiran</h2>
@@ -397,50 +1067,8 @@
           height: auto;
           aspect-ratio: 4/3;
           object-fit: cover;
-          border: 16px;
-          transition: transform 0.3s ease, all 0.3s ease;
-        }
-
-        .box.zoomed {
-          position: fixed;
-          top: 0;
-          left: 0;
-          padding: 0;
-          z-index: 1000;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(0, 0, 0, 0.9);
-        }
-
-        .box.zoomed .image {
-          max-width: 95vw;
-          max-height: 95vh;
-          border-radius: 0;
-        }
-
-        .main-close {
-          position: fixed;
-          top: 0px;
-          left: 0px;
-          width: 60px;
-          height: 60px;
-          color: white;
-          font-size: 40px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1001;
-          opacity: 0;
-          pointer-events: none;
-          background: rgba(0, 0, 0, 0.5);
-          border-radius: 50%;
-        }
-
-        .main-close.active {
-          opacity: 1;
-          pointer-events: all;
+          border-radius: 16px;
+          transition: transform 0.3s ease;
         }
 
         /* Dim other images when one is hovered */
@@ -466,206 +1094,89 @@
         }
       </style>
       <script>
-        let currentImg = null;
-let isZooming = false;
-let currentImgProps = { x: 0, y: 0, width: 0, height: 0 };
+        function animateRow(id, direction = -1) {
+          const boxes = document.getElementById(id).querySelectorAll(".box");
 
-function initializeGallery() {
-  const boxes = document.querySelectorAll(".box");
-  const closeButton = document.querySelector(".main-close");
-  let mouse = { x: 0, y: 0 };
+          function getBoxWidth() {
+            if (window.innerWidth <= 480) return 0.8 * window.innerWidth;
+            if (window.innerWidth <= 768) return 0.5 * window.innerWidth;
+            return 0.26 * window.innerWidth;
+          }
 
-  boxes.forEach((box) => {
-    box.addEventListener("click", (e) => {
-      if (isZooming) return;
+          const boxWidth = getBoxWidth();
+          const wrapWidth = (boxes.length - 1) * boxWidth;
 
-      isZooming = true;
-      gsap.delayedCall(0.8, () => (isZooming = false));
+          // Initial positioning
+          gsap.set(boxes, {
+            x: (i) => i * boxWidth,
+          });
 
-      if (currentImg) {
-        // Enhanced zoom out animation
-        gsap
-          .timeline({ defaults: { ease: "expo.out" }}) // Changed to expo.out for smoother exit
-          .to(closeButton, {
-            duration: 0.3, // Increased duration
-            opacity: 0,
-            pointerEvents: "none",
-          })
-          .to(
-            currentImg,
-            {
-              duration: 0.5,
-              x: currentImgProps.x,
-              y: currentImgProps.y,
-              width: currentImgProps.width,
-              height: currentImgProps.height,
-              scale: 1,
-              borderRadius: "8px",
-              ease: "power2.inOut", // Added specific easing for smoother transition
-              onComplete: () => {
-                currentImg.classList.remove("zoomed");
-                resumeAllRowAnimations();
-                currentImg = null;
+          const images = gsap.utils.toArray(`#${id} .box`);
+          const velocityFactor = id === "row2" ? 0.8 : 1; // Slow down row2 slightly
+          const additionalX = { val: 0 };
+          let additionalXAnim;
+          let offset = 0;
+
+          window[`${id}Animations`] = [];
+
+          images.forEach((item) => {
+            const anim = gsap.to(item, {
+              x: (i, target) => {
+                const x =
+                  gsap.getProperty(target, "x") +
+                  wrapWidth * direction -
+                  boxWidth;
+                return x;
               },
+              duration: id === "row2" ? 14 : 12, // Slower animation for row2
+              repeat: -1,
+              ease: "none",
+              modifiers: {
+                x: gsap.utils.unitize((x) => {
+                  offset += additionalX.val;
+                  x = parseFloat(x) + offset;
+                  x = wrap(parseFloat(x), -boxWidth, wrapWidth);
+                  return x;
+                }),
+              },
+            });
+            window[`${id}Animations`].push(anim);
+          });
+
+          window[`${id}ScrollTrigger`] = ScrollTrigger.create({
+            trigger: `#${id} .boxes`,
+            start: "top bottom",
+            end: "bottom top",
+            onUpdate: function (self) {
+              const velocity = self.getVelocity();
+              if (Math.abs(velocity) > 0) {
+                if (additionalXAnim) additionalXAnim.kill();
+                // Remove the velocity sign and maintain the direction of the marquee
+                additionalX.val =
+                  (Math.abs(velocity) / 500) * direction * velocityFactor;
+                additionalXAnim = gsap.to(additionalX, {
+                  val: 0,
+                  duration: 0.5,
+                  ease: "power2.out",
+                });
+              }
             },
-            0
-          );
-      } else {
-        // Enhanced zoom in animation
-        currentImg = box;
-        const rect = box.getBoundingClientRect();
+          });
+        }
 
-        currentImgProps = {
-          x: gsap.getProperty(box, "x"),
-          y: gsap.getProperty(box, "y"),
-          width: rect.width,
-          height: rect.height,
-        };
+        function wrap(value, min, max) {
+          var v = value - min;
+          var r = max - min;
+          return ((r + (v % r)) % r) + min;
+        }
 
-        const rowId = box.closest(".container").id;
-        pauseRowAnimation(rowId);
-
-        box.classList.add("zoomed");
-
-        gsap
-          .timeline({ defaults: { duration: 0.6, ease: "expo.inOut" } })
-          .to(closeButton, {
-            opacity: 1,
-            pointerEvents: "all",
-            duration: 0.4,
-          })
-          .to(
-            box,
-            {
-              x: 0,
-              y: 0,
-              scale: 1,
-              width: "100vw",
-              height: "100vh",
-              ease: "power2.inOut",
-            },
-            0
-          );
-      }
-    });
-  });
-
-  closeButton.addEventListener("click", () => {
-    if (currentImg) {
-      const event = new Event("click");
-      currentImg.dispatchEvent(event);
-    }
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    gsap.to(closeButton, {
-      x: mouse.x - closeButton.clientWidth / 2,
-      y: mouse.y - closeButton.clientHeight / 2,
-      duration: 0.2, // Slightly increased for smoother cursor following
-    });
-  });
-}
-
-function animateRow(id, direction = -1) {
-  const boxes = document.getElementById(id).querySelectorAll(".box");
-
-  function getBoxWidth() {
-    if (window.innerWidth <= 480) return 0.8 * window.innerWidth;
-    if (window.innerWidth <= 768) return 0.5 * window.innerWidth;
-    return 0.26 * window.innerWidth;
-  }
-
-  const boxWidth = getBoxWidth();
-  const wrapWidth = (boxes.length - 1) * boxWidth;
-  
-  // Initial positioning
-  gsap.set(boxes, {
-    x: (i) => i * boxWidth,
-  });
-
-  const images = gsap.utils.toArray(`#${id} .box`);
-  const velocityFactor = id === "row2" ? 0.8 : 1; // Slow down row2 slightly
-  const additionalX = { val: 0 };
-  let additionalXAnim;
-  let offset = 0;
-
-  window[`${id}Animations`] = [];
-
-  images.forEach((item) => {
-    const anim = gsap.to(item, {
-      x: (i, target) => {
-        const x = gsap.getProperty(target, "x") + wrapWidth * direction - boxWidth;
-        return x;
-      },
-      duration: id === "row2" ? 14 : 12, // Slower animation for row2
-      repeat: -1,
-      ease: "none",
-      modifiers: {
-        x: gsap.utils.unitize((x) => {
-          offset += additionalX.val;
-          x = parseFloat(x) + offset;
-          x = wrap(parseFloat(x), -boxWidth, wrapWidth);
-          return x;
-        }),
-      },
-    });
-    window[`${id}Animations`].push(anim);
-  });
-
-  window[`${id}ScrollTrigger`] = ScrollTrigger.create({
-    trigger: `#${id} .boxes`,
-    start: "top bottom",
-    end: "bottom top",
-    onUpdate: function (self) {
-      const velocity = self.getVelocity();
-      if (Math.abs(velocity) > 0) {
-        if (additionalXAnim) additionalXAnim.kill();
-        additionalX.val = ((velocity / 500) * direction * velocityFactor);
-        additionalXAnim = gsap.to(additionalX, { 
-          val: 0,
-          duration: 0.5,
-          ease: "power2.out"
+        // Initialize everything
+        document.addEventListener("DOMContentLoaded", () => {
+          animateRow("row1", -1);
+          animateRow("row2", 1);
         });
-      }
-    },
-  });
-}
 
-// Helper functions remain the same
-function pauseRowAnimation(rowId) {
-  if (window[`${rowId}Animations`]) {
-    window[`${rowId}Animations`].forEach((anim) => anim.pause());
-  }
-}
-
-function resumeRowAnimation(rowId) {
-  if (window[`${rowId}Animations`]) {
-    window[`${rowId}Animations`].forEach((anim) => anim.resume());
-  }
-}
-
-function resumeAllRowAnimations() {
-  resumeRowAnimation("row1");
-  resumeRowAnimation("row2");
-}
-
-function wrap(value, min, max) {
-  var v = value - min;
-  var r = max - min;
-  return ((r + (v % r)) % r) + min;
-}
-
-// Initialize everything
-document.addEventListener("DOMContentLoaded", () => {
-  animateRow("row1", -1);
-  animateRow("row2", 1);
-  initializeGallery();
-});
-      </script>
-
-      <script>
+        // Gallery entrance animation
         const gallery = document.getElementById("gallery");
         gsap
           .timeline({
@@ -675,12 +1186,12 @@ document.addEventListener("DOMContentLoaded", () => {
               start: () => "top " + window.innerHeight * 5.5,
               end: "bottom center",
               invalidateOnRefresh: true,
-              toggleActions: "restart none none none", // Makes animation restart on each enter
+              toggleActions: "restart none none none",
             },
           })
           .fromTo(
             gallery,
-            { rotate: "135%", scale: 0 },
+            { rotate: isMobile ? "0%" : "135%", scale: 0 },
             { rotate: "0%", scale: 1 },
             0
           );
@@ -768,6 +1279,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </script>
     </section>
 
+    <!-- Hero section animations -->
     <script>
       // Text animation
       gsap.from("#animated-text", {
@@ -804,47 +1316,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const interval = setInterval(nextSlide, 3000);
     </script>
     <script>
-      let lastScrollY = 0; // Keeps track of the last scroll position
-      const heroSection = document.querySelector(".hero");
-      const navbarCenter = navbar.clientHeight / 2;
-      const heroThreshold = heroSection.clientHeight - navbarCenter;
-      const scrollThreshold = 200;
-
-      document.addEventListener("DOMContentLoaded", () => {
-        // Show the navbar after scrolling down 200px
-        if (lenis.scroll > 200) {
-          navbar.classList.add("visible");
-        }
-      });
-      // Navbar visibility and size adjustment
-      const handleNavbarOnScroll = () => {
-        const currentScrollY = lenis.scroll;
-
-        // Show the navbar after scrolling down 200px
-        navbar.classList.toggle("visible", currentScrollY > scrollThreshold);
-
-        navbar.classList.toggle("solid", currentScrollY >= heroThreshold);
-
-        // Shrink or grow the navbar based on scroll direction
-        navbar.classList.toggle(
-          "shrunk",
-          currentScrollY > lastScrollY && currentScrollY > scrollThreshold
-        );
-
-        lastScrollY = currentScrollY; // Update the last scroll position
-      };
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Add scroll margin top to all the sections
-        const sections = document.querySelectorAll("section");
-        const height = navbar.clientHeight + 20;
-        sections.forEach((section) => {
-          section.style.scrollMarginTop = `${height}px`;
-        });
-      });
-    </script>
-    <script>
       const background = document.querySelectorAll(".carousel img");
       gsap.to(background, {
         y: () => window.innerHeight * 0.6,
@@ -855,9 +1326,6 @@ document.addEventListener("DOMContentLoaded", () => {
           invalidateOnRefresh: true,
           scrub: true,
         },
-      });
-      lenis.on("scroll", () => {
-        handleNavbarOnScroll();
       });
     </script>
   </body>
